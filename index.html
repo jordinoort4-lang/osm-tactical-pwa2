@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⏰ Time Clock</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#22c55e">
+  <style>
+    body { font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-xl p-8">
+      <div class="text-center mb-8">
+        <div class="text-6xl mb-2">⏰</div>
+        <h1 class="text-4xl font-bold text-gray-800">Time Clock</h1>
+        <p class="text-gray-500 mt-2">Simple & private for you and your friend</p>
+      </div>
+      <div class="space-y-4">
+        <input id="email" type="email" placeholder="your@email.com" class="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 text-lg">
+        <input id="password" type="password" placeholder="Password (min 6 chars)" class="w-full px-4 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-green-500 text-lg">
+        <button id="signin-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-2xl text-lg">Sign In</button>
+        <button id="signup-btn" class="w-full bg-white border-2 border-green-600 text-green-600 font-semibold py-4 rounded-2xl text-lg">Create Account</button>
+      </div>
+      <p class="text-center text-xs text-gray-400 mt-8">Both you and your friend use the same app with different emails</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard-screen" class="hidden min-h-screen bg-gray-100">
+    <div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl">
+      <!-- header -->
+      <div class="bg-green-600 text-white p-6 flex justify-between items-center">
+        <div>
+          <div class="text-sm opacity-75">Logged in as</div>
+          <div id="user-email" class="font-semibold"></div>
+        </div>
+        <button id="logout-btn" class="bg-white/20 hover:bg-white/30 px-5 py-2 rounded-2xl text-sm font-medium">Logout</button>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- status -->
+        <div class="text-center">
+          <div id="status" class="text-3xl font-semibold text-gray-700 mb-2">Not clocked in</div>
+          <button id="clock-btn" class="w-full py-8 text-3xl font-bold rounded-3xl shadow-lg transition-all active:scale-95">CLOCK IN</button>
+        </div>
+
+        <!-- today -->
+        <div class="bg-green-50 rounded-3xl p-6 text-center">
+          <div class="text-sm text-green-600 font-medium">TODAY'S HOURS</div>
+          <div id="today-hours" class="text-6xl font-bold text-green-700">0.00</div>
+        </div>
+
+        <!-- history -->
+        <div>
+          <div class="flex justify-between items-center mb-4 px-1">
+            <h2 class="font-semibold text-lg">History</h2>
+            <button onclick="loadHistory()" class="text-green-600 text-sm">Refresh</button>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-3xl overflow-hidden">
+            <table id="history" class="w-full">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500">Date</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500">In</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500">Out</th>
+                  <th class="px-6 py-3 text-right text-xs font-medium text-gray-500">Hours</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
